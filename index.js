@@ -43,7 +43,7 @@ app.post('/cloud/store', (request, response) => {
                 console.log(err);
               } else {
                 console.log('insert done');
-                response.send('insert done'); //
+                response.send('insert done');
               }
 
             });
@@ -72,8 +72,6 @@ app.post('/cloud/store', (request, response) => {
   });
 });
 
-
-
 app.post('/cloud/load', (request, response) => {
   pg.connect(process.env.DATABASE_URL, (err, client, done) => {
     client.query('SELECT 1 from cloud_data WHERE id = $1', [request.body.id], (err, result) => {
@@ -101,19 +99,6 @@ app.post('/cloud/load', (request, response) => {
   });
 });
 
-/* POST SKELETON
-app.post('', (request, response) => {
-  pg.connect(process.env.DATABASE_URL, (err, client, done) => {
-    client.query('', [], (err, result) => {
-      done();
-      if(err){
-      } else {
-
-      }
-    });
-  });
-});
-*/
 app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'));
 });
